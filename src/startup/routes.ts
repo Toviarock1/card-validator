@@ -2,7 +2,7 @@ import { Express, Request, Response, NextFunction } from "express";
 import createResponse from "../utils/response";
 import { HttpStatus } from "../constants/httpCodes";
 import router from "./../routes";
-import errorHandler from "./../middleware/error.middleware";
+import { errorHandler } from "./../middleware/error.middleware";
 
 export default function setupRoutes(app: Express) {
   app.get("/", (req: Request, res: Response) => {
