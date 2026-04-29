@@ -1,18 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { z, ZodError } from "zod";
+import { ZodError } from "zod";
 import { HttpStatus } from "../constants/httpCodes";
 import createResponse from "../utils/response";
-
-// Define the schema: cardNumber must be a string of digits, 13-19 chars long
-const cardSchema = z.object({
-  cardNumber: z
-    .string({
-      message: "cardNumber is required",
-    })
-    .min(13, "Card number is too short")
-    .max(19, "Card number is too long")
-    .regex(/^\d+$/, "Card number must contain only digits"),
-});
+import { cardSchema } from "../schemas/card.schema";
 
 export const validateCardInput = (
   req: Request,

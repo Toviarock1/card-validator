@@ -16,7 +16,7 @@ export default function setupRoutes(app: Express) {
     });
   });
 
-  app.use("api/v1", router);
+  app.use("/api/v1", router);
 
   // Not found
   app.use((req: Request, res: Response, next: NextFunction) => {
@@ -24,7 +24,7 @@ export default function setupRoutes(app: Express) {
       createResponse({
         success: false,
         status: HttpStatus.NOT_FOUND,
-        message: `Route not found - ${req.originalUrl}`,
+        message: `Route not found - ${req.method} ${req.originalUrl}`,
       }),
     );
   });
